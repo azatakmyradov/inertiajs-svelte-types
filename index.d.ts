@@ -111,7 +111,7 @@ type HtmlAnchorAttributes<T extends HTMLElement> = {
 };
 
 declare module "@inertiajs/svelte" {
-  export const page: Readable<Page<{}>>;
+  export const page: Readable<Page>;
   export const useForm: Form;
   export const router: Router;
   export const Link: typeof SvelteComponent<
