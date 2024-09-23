@@ -1,6 +1,7 @@
 import type { Readable, Writable } from "svelte/store";
 import type { AxiosProgressEvent } from "axios";
 import type { SvelteComponent } from "svelte";
+import type { HTMLAnchorAttributes } from "svelte/elements";
 
 export type PageProps<T extends {} = {}> = {} & T;
 
@@ -106,17 +107,9 @@ type Router = {
   visit: <TData>(url: string, options?: RouterOptions<TData>) => void;
 };
 
-type HtmlAnchorAttributes<T extends HTMLElement> = {
-  [K in keyof T]: T[K] extends (val: infer V) => void ? V : never;
-};
-
 declare module "@inertiajs/svelte" {
   export const page: Readable<Page>;
   export const useForm: Form;
   export const router: Router;
-  export const Link: typeof SvelteComponent<
-    HtmlAnchorAttributes<HTMLAnchorElement>,
-    any,
-    any
-  >;
+  export const Link: typeof SvelteComponent<HTMLAnchorAttributes, any, any>;
 }
