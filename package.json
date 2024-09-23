@@ -1,5 +1,5 @@
 {
-  "name": "inertiajs-svelte-types",
+  "name": "types-inertiajs-svelte",
   "version": "1.0.0",
   "description": "Typescript declarations for @inertia/svelte",
   "main": "index.js",

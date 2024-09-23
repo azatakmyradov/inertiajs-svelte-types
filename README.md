@@ -7,6 +7,5 @@ This package provides TypeScript type definitions for `@inertiajs/svelte`, enhan
 To install this package, use npm or yarn:
 
 ```bash
-npm install @your-org/inertia-svelte-types
-# or
-yarn add @your-org/inertia-svelte-types
+npm install --save-dev types-inertiajs-svelte
+```
