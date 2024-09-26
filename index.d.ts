@@ -45,31 +45,35 @@ type FormOptions<TData> = {
 };
 type FormMethods = "get" | "post" | "put" | "patch" | "delete";
 
-type Form = <TFormData>(data?: TFormData) => Writable<
-  TFormData & {
-    submit: (
-      method: FormMethods,
-      url: string,
-      options?: FormOptions<TFormData>,
-    ) => void;
-    get: (url: string, options?: FormOptions<TFormData>) => void;
-    post: (url: string, options?: FormOptions<TFormData>) => void;
-    put: (url: string, options?: FormOptions<TFormData>) => void;
-    patch: (url: string, options?: FormOptions<TFormData>) => void;
-    delete: (url: string, options?: FormOptions<TFormData>) => void;
-    isDirty: boolean;
-    errors: { [K in keyof TFormData]: TFormData[K] | undefined };
-    hasErrors: boolean;
-    progress: null | number;
-    wasSuccessful: boolean;
-    recentlySuccessful: boolean;
-    processing: boolean;
-    defaults: <TValue>(field: keyof TFormData, value: TValue) => void;
-    reset: (...fields: (keyof TFormData)[]) => void;
-    transform: (callback: (data: TFormData) => TFormData) => void;
-    clearErrors: (...fields: (keyof TFormData)[]) => void;
-  }
->;
+type FormProperties<TFormData> = {
+  submit: (
+    method: FormMethods,
+    url: string,
+    options?: FormOptions<TFormData>,
+  ) => void;
+  get: (url: string, options?: FormOptions<TFormData>) => void;
+  post: (url: string, options?: FormOptions<TFormData>) => void;
+  put: (url: string, options?: FormOptions<TFormData>) => void;
+  patch: (url: string, options?: FormOptions<TFormData>) => void;
+  delete: (url: string, options?: FormOptions<TFormData>) => void;
+  isDirty: boolean;
+  errors: { [K in keyof TFormData]: TFormData[K] | undefined };
+  hasErrors: boolean;
+  progress: null | number;
+  wasSuccessful: boolean;
+  recentlySuccessful: boolean;
+  processing: boolean;
+  defaults: <TValue>(field: keyof TFormData, value: TValue) => void;
+  reset: (...fields: (keyof TFormData)[]) => void;
+  transform: (
+    callback: (data: TFormData) => TFormData,
+  ) => FormProperties<TFormData>;
+  clearErrors: (...fields: (keyof TFormData)[]) => void;
+};
+
+type Form = <TFormData extends {}>(
+  data?: TFormData,
+) => Writable<TFormData & FormProperties<TFormData>>;
 
 type RouterOptions<TData> = {
   method?: FormMethods;
