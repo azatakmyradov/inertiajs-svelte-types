@@ -45,7 +45,7 @@ type FormOptions<TData> = {
 };
 type FormMethods = "get" | "post" | "put" | "patch" | "delete";
 
-type Form = <TFormData>(data: TFormData) => Writable<
+type Form = <TFormData>(data?: TFormData) => Writable<
   TFormData & {
     submit: (
       method: FormMethods,
