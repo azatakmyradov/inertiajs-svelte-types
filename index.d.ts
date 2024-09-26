@@ -43,6 +43,18 @@ type FormOptions<TData> = {
   onCancel?: () => void;
   onFinish?: () => void;
 };
+
+type FormEvents =
+  | "before"
+  | "start"
+  | "progress"
+  | "success"
+  | "error"
+  | "invalid"
+  | "exception"
+  | "finish"
+  | "navigate";
+
 type FormMethods = "get" | "post" | "put" | "patch" | "delete";
 
 type FormProperties<TFormData> = {
@@ -109,6 +121,10 @@ type Router = {
   delete: (url: string, options?: RouterOptions<{}>) => void;
   reload: (options?: RouterOptions<{}>) => void;
   visit: <TData>(url: string, options?: RouterOptions<TData>) => void;
+  on: (
+    event: FormEvents,
+    callback: (event: CustomEvent<{ visit: RouterOptions<unknown> }>) => void,
+  ) => void;
 };
 
 declare module "@inertiajs/svelte" {
